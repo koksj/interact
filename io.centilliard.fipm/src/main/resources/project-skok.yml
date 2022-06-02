@@ -8,7 +8,7 @@
            ordinal: 200
            properties:
              fipm.environment.configuration: local
-             interact.interaction.point: J4UU_PRE_FI
+             interact.interaction.point: UU_PRE_FI
              interact.interactive.channel: UPSIZE
              max.db.records.select: 110
              nde.campaign.type: ANY
