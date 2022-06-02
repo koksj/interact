@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>centilliard.io</groupId>
+	<artifactId>centilliard.io.cvmi</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>centilliard.io.cvmi</name>
+	<modules>
+		<module>com.rabbitmq.jca</module>
+		<module>interact.soap.lib</module>
+		<module>interact.soap.api</module>
+		<module>interact.soap.adapter</module>
+		<module>interact.soap.jca</module>
+		<module>eclipse.restclient.api</module>
+		<module>eclipse.restclient.adapter</module>
+		<module>eclipse.restclient.jca</module>
+		<module>io.centilliard.fipm</module>
+		<module>rabbitmq-api</module>
+		<module>rabbitmq-adapter</module>
+	</modules>		
+</project>

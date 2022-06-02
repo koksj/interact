@@ -1,0 +1,3 @@
+# mvn clean install package -Dmaven.test.skip=true && java -Xms2g -Xmx2g -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n  -Dswarm.project.stage=prod -jar centilliard.io.fipm/target/fipm-thorntail.jar
+
+mvn clean install package -Dmaven.test.skip=true && java -Xms2g -Xmx2g -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n  -Dswarm.project.stage=debug -jar centilliard.io.fipm/target/fipm-thorntail.jar

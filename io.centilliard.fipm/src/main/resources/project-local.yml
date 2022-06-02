@@ -1,0 +1,57 @@
+swarm:
+  http:
+    port: 8081
+  logging:
+    pattern-formatters:
+      NORMAL:
+        pattern: "%p [%c] %s%e%n"
+      EXCEPTION:
+        pattern: "%p [%c.%m] %s%e%n"
+    periodic-rotating-file-handlers:
+      DEBUGLOG:
+        file:
+          path: centilliard.io.fipm/logs/fipm.log
+        suffix: .yyyy-MM-dd
+        named-formatter: NORMAL
+        level: DEBUG
+      EXCEPTIONLOG:
+        file:
+          path: centilliard.io.fipm/logs/exception.log
+        suffix: .yyyy-MM-dd
+        named-formatter: EXCEPTION
+        level: WARN
+    root-logger:
+      handlers:
+      - CONSOLE
+      - DEBUGLOG
+      - EXCEPTIONLOG
+    loggers:
+      [cvmi.fipm]:
+        level: DEBUG  
+      [ibm.interact.soap]:
+        level: DEBUG    
+  microprofile:
+    config:
+      config-sources:
+         env-config:
+           dir: centilliard.io.fipm/config/local/
+           ordinal: 200
+  datasources:    
+    data-sources:
+      MyDS:
+        driver-name: oracle
+        connection-url: jdbc:oracle:thin:@mq.centtilliard.io:1521:mccmdev
+        user-name: CAMWRAP
+        password: camwr2pd3v
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        stale-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
+  logstash:
+    hostname: localhost
+    port: 9100
+    level: DEBUG  
+  deployment:
+    ibm.soap.interact:interact.soap.jca.rar:
+    microprofile.restclient:eclipse.restclient.jca.rar:

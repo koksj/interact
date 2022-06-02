@@ -1,0 +1,56 @@
+swarm:
+  http:
+    port: 8081
+  logging:
+    pattern-formatters:
+      NORMAL:
+        pattern: "%p [%c] %s%e%n"
+      EXCEPTION:
+        pattern: "%p [%c.%m] %s%e%n"
+    periodic-rotating-file-handlers:
+      DEBUGLOG:
+        file:
+          path: centilliard.io.fipm/logs/fipm.log
+        suffix: .yyyy-MM-dd
+        named-formatter: NORMAL
+        level: DEBUG
+      EXCEPTIONLOG:
+        file:
+          path: centilliard.io.fipm/logs/exception.log
+        suffix: .yyyy-MM-dd
+        named-formatter: EXCEPTION
+        level: WARN
+    root-logger:
+      handlers:
+      - CONSOLE
+      - DEBUGLOG
+      - EXCEPTIONLOG
+    loggers:
+      cvmi.fipm:
+        level: DEBUG  
+      ibm.interact.soap:
+        level: DEBUG    
+  microprofile:
+    config:
+      config-sources:
+         env-config:
+           dir: centilliard.io.fipm/config/local/
+           ordinal: 200
+  datasources:    
+    data-sources:
+      MyDS:
+        driver-name: postgresql
+        connection-url: jdbc:postgresql://localhost:5432/miscdb
+        user-name: admin
+        password: password
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+  logstash:
+    hostname: localhost
+    port: 9300
+    level: DEBUG  
+  deployment:
+    ibm.soap.interact:interact.soap.jca.rar:
+    microprofile.restclient:eclipse.restclient.jca.rar:

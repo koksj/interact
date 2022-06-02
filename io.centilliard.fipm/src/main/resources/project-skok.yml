@@ -1,0 +1,125 @@
+  swarm:
+  http:
+    port: 8081  
+  microprofile:
+    config:
+      config-sources:
+         environment:
+           ordinal: 200
+           properties:
+             fipm.environment.configuration: local
+             interact.interaction.point: J4UU_PRE_FI
+             interact.interactive.channel: UPSIZE
+             max.db.records.select: 110
+             nde.campaign.type: ANY
+             nde.notification.source: VAD
+             nde.param.offer.advice: offerAdvice
+             nde.payment.method: P
+             nde.sub.type: ANY
+             nde.template.id: MessageTemplate448
+             fipm.schedule.hour: 0
+             fipm.schedule.minute: 0
+             fipm.schedule.seconds: 20
+  datasources:
+    data-sources:
+      MyDS:
+        driver-name: oracle
+        connection-url: jdbc:oracle:thin:@mq.centtilliard.io:1521:mccmdev
+        user-name: CAMWRAP
+        password: camwr2pd3v
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        stale-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter
+  ejb:
+     strict-max-bean-instance-pools:
+       ejbpool:
+         max-pool-size: 16
+       
+  logstash:
+    hostname: log.centilliard.io
+    port: 9100
+    level: DEBUG
+  management:
+    security-realms:
+      ManagementRealm:
+        in-memory-authentication:
+          users:
+            admin:
+              password: tacos!
+    http-interface-management-interface:
+      allowed-origins:
+       - http://localhost:8081
+       - http://127.0.0.1:8081
+      security-realm: ManagementRealm  
+  resource-adapters:
+    resource-adapters:
+       eclipse.restclient.jca:
+         # This is not the physical jar name, but the maven coordinates (without version!)
+         archive: eclipse.restclient.jca.rar
+         transaction-support: NoTransaction
+         connection-definitions:
+            RestConnectionFactoryPool:
+               class-name: microprofile.restclient.RestManagedConnectionFactory
+               jndi-name: java:/eis/RestConnectionFactory
+               config-properties:
+                  restUrl:
+                     value: http://inter.io.centilliard:14156
+                  username: 
+                     value: apptest
+                  password: 
+                     value: 7FG3489D
+               min-pool-size: 0
+               max-pool-size: 16     
+       interact.soap.jca:
+          # This is not the physical jar name, but the maven coordinates (without version!)
+          archive: interact.soap.jca.rar
+          transaction-support: NoTransaction
+          connection-definitions:
+            InteractConnectionFactoryPool:
+               class-name: ibm.interact.soap.InteractManagedConnectionFactory
+               jndi-name: java:/eis/InteractConnectionFactory
+               config-properties:
+                  wsdlFile:
+                     value: file:centilliard.io.fipm/wsdl/InteractService.wsdl
+               min-pool-size: 0
+               max-pool-size: 16
+       rabbitmq-jca:
+          # This is not the physical jar name, but the maven coordinates (without version!)
+          archive: rabbitmq-jca.rar
+          transaction-support: NoTransaction
+          config-properties:
+                  rabbitHost:
+                     value: windowssuck
+                  username:
+                     value: guest
+                  password:
+                     value: guest
+                  portNumber:
+                     value: 5672
+                  queueName: 
+                     value: FI.BONAZA.IN
+                  numberRabbitMqConsumers:
+                     value: 16  
+          connection-definitions:
+            RabbitMqConnectionFactoryPool:
+               class-name:  com.rabbitmq.jca.RabbitMqManagedConnectionFactory
+               jndi-name: java:/eis/RabbitMqConnectionFactory
+               config-properties:
+                  rabbitHost:
+                     value: windowssuck
+                  username:
+                     value: guest
+                  password:
+                     value: guest
+                  portNumber:
+                     value: 5672
+                  queueName: 
+                     value: FI.BONAZA.OUT
+               min-pool-size: 0
+               max-pool-size: 16      
+  deployment:
+    ibm.soap.interact:interact.soap.jca.rar:
+    microprofile.restclient:eclipse.restclient.jca.rar:
+    com.rabbitmq:rabbitmq-jca.rar:

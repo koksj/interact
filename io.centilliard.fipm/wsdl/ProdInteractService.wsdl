@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax21="http://api.interact.unicacorp.com/xsd" xmlns:ns="http://soap.api.interact.unicacorp.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://soap.api.interact.unicacorp.com">
+    <wsdl:types>
+        <xs:schema xmlns:ax22="http://api.interact.unicacorp.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.api.interact.unicacorp.com">
+            <xs:import namespace="http://api.interact.unicacorp.com/xsd"/>
+            <xs:element name="startSession">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element name="relyOnExistingSession" type="xs:boolean"/>
+                        <xs:element name="debug" type="xs:boolean"/>
+                        <xs:element name="interactiveChannel" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" name="audienceID" nillable="true" type="ax22:NameValuePairImpl"/>
+                        <xs:element name="audienceLevel" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="parameters" nillable="true" type="ax22:NameValuePairImpl"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="startSessionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setDebug">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element name="debug" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setDebugResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setAudience">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" name="audienceID" nillable="true" type="ax22:NameValuePairImpl"/>
+                        <xs:element name="audienceLevel" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="parameters" nillable="true" type="ax22:NameValuePairImpl"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setAudienceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="postEvent">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element name="eventName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="eventParameters" nillable="true" type="ax22:NameValuePairImpl"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="postEventResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getVersionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getProfile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getProfileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getOffersForMultipleInteractionPoints">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="requests" nillable="true" type="ax22:GetOfferRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getOffersForMultipleInteractionPointsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getOffers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element name="iPoint" nillable="true" type="xs:string"/>
+                        <xs:element name="numberRequested" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getOffersResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="executeBatch">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="commands" nillable="true" type="ax22:CommandImpl"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="executeBatchResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:BatchResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="endSession">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sessionID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="endSessionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://api.interact.unicacorp.com/xsd">
+            <xs:complexType name="NameValuePairImpl">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="valueAsDate" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="valueAsNumeric" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="valueAsString" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="valueDataType" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Response">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="advisoryMessages" nillable="true" type="ax21:AdvisoryMessage"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="allOfferLists" nillable="true" type="ax21:OfferList"/>
+                    <xs:element minOccurs="0" name="apiVersion" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="offerList" nillable="true" type="ax21:OfferList"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="profileRecord" nillable="true" type="ax21:NameValuePairImpl"/>
+                    <xs:element minOccurs="0" name="sessionID" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statusCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AdvisoryMessage">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="detailMessage" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="messageCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="statusLevel" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OfferList">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="defaultString" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="interactionPointName" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="recommendedOffers" nillable="true" type="ax21:Offer"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Offer">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalAttributes" nillable="true" type="ax21:NameValuePairImpl"/>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="offerCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="offerName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="score" type="xs:int"/>
+                    <xs:element minOccurs="0" name="treatmentCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GetOfferRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="duplicationPolicy" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ipName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numberRequested" type="xs:int"/>
+                    <xs:element minOccurs="0" name="offerAttributes" nillable="true" type="ax21:OfferAttributeRequirements"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OfferAttributeRequirements">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="ax21:NameValuePairImpl"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="childRequirements" nillable="true" type="ax21:OfferAttributeRequirements"/>
+                    <xs:element minOccurs="0" name="numberRequested" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CommandImpl">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="audienceID" nillable="true" type="ax21:NameValuePairImpl"/>
+                    <xs:element minOccurs="0" name="audienceLevel" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="debug" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="event" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="eventParameters" nillable="true" type="ax21:NameValuePairImpl"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="getOfferRequests" nillable="true" type="ax21:GetOfferRequest"/>
+                    <xs:element minOccurs="0" name="interactionPoint" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="interactiveChannel" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="methodIdentifier" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numberRequested" type="xs:int"/>
+                    <xs:element minOccurs="0" name="relyOnExistingSession" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BatchResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="batchStatusCode" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="responses" nillable="true" type="ax21:Response"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getOffersForMultipleInteractionPointsRequest">
+        <wsdl:part name="parameters" element="ns:getOffersForMultipleInteractionPoints"/>
+    </wsdl:message>
+    <wsdl:message name="getOffersForMultipleInteractionPointsResponse">
+        <wsdl:part name="parameters" element="ns:getOffersForMultipleInteractionPointsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getProfileRequest">
+        <wsdl:part name="parameters" element="ns:getProfile"/>
+    </wsdl:message>
+    <wsdl:message name="getProfileResponse">
+        <wsdl:part name="parameters" element="ns:getProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getVersionRequest"/>
+    <wsdl:message name="getVersionResponse">
+        <wsdl:part name="parameters" element="ns:getVersionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="postEventRequest">
+        <wsdl:part name="parameters" element="ns:postEvent"/>
+    </wsdl:message>
+    <wsdl:message name="postEventResponse">
+        <wsdl:part name="parameters" element="ns:postEventResponse"/>
+    </wsdl:message>
+    <wsdl:message name="executeBatchRequest">
+        <wsdl:part name="parameters" element="ns:executeBatch"/>
+    </wsdl:message>
+    <wsdl:message name="executeBatchResponse">
+        <wsdl:part name="parameters" element="ns:executeBatchResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getOffersRequest">
+        <wsdl:part name="parameters" element="ns:getOffers"/>
+    </wsdl:message>
+    <wsdl:message name="getOffersResponse">
+        <wsdl:part name="parameters" element="ns:getOffersResponse"/>
+    </wsdl:message>
+    <wsdl:message name="setDebugRequest">
+        <wsdl:part name="parameters" element="ns:setDebug"/>
+    </wsdl:message>
+    <wsdl:message name="setDebugResponse">
+        <wsdl:part name="parameters" element="ns:setDebugResponse"/>
+    </wsdl:message>
+    <wsdl:message name="setAudienceRequest">
+        <wsdl:part name="parameters" element="ns:setAudience"/>
+    </wsdl:message>
+    <wsdl:message name="setAudienceResponse">
+        <wsdl:part name="parameters" element="ns:setAudienceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="startSessionRequest">
+        <wsdl:part name="parameters" element="ns:startSession"/>
+    </wsdl:message>
+    <wsdl:message name="startSessionResponse">
+        <wsdl:part name="parameters" element="ns:startSessionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="endSessionRequest">
+        <wsdl:part name="parameters" element="ns:endSession"/>
+    </wsdl:message>
+    <wsdl:message name="endSessionResponse">
+        <wsdl:part name="parameters" element="ns:endSessionResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="InteractSoapServicePortType">
+        <wsdl:operation name="getOffersForMultipleInteractionPoints">
+            <wsdl:input message="ns:getOffersForMultipleInteractionPointsRequest" wsaw:Action="urn:getOffersForMultipleInteractionPoints"/>
+            <wsdl:output message="ns:getOffersForMultipleInteractionPointsResponse" wsaw:Action="urn:getOffersForMultipleInteractionPointsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProfile">
+            <wsdl:input message="ns:getProfileRequest" wsaw:Action="urn:getProfile"/>
+            <wsdl:output message="ns:getProfileResponse" wsaw:Action="urn:getProfileResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVersion">
+            <wsdl:input message="ns:getVersionRequest" wsaw:Action="urn:getVersion"/>
+            <wsdl:output message="ns:getVersionResponse" wsaw:Action="urn:getVersionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="postEvent">
+            <wsdl:input message="ns:postEventRequest" wsaw:Action="urn:postEvent"/>
+            <wsdl:output message="ns:postEventResponse" wsaw:Action="urn:postEventResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeBatch">
+            <wsdl:input message="ns:executeBatchRequest" wsaw:Action="urn:executeBatch"/>
+            <wsdl:output message="ns:executeBatchResponse" wsaw:Action="urn:executeBatchResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOffers">
+            <wsdl:input message="ns:getOffersRequest" wsaw:Action="urn:getOffers"/>
+            <wsdl:output message="ns:getOffersResponse" wsaw:Action="urn:getOffersResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="setDebug">
+            <wsdl:input message="ns:setDebugRequest" wsaw:Action="urn:setDebug"/>
+            <wsdl:output message="ns:setDebugResponse" wsaw:Action="urn:setDebugResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="setAudience">
+            <wsdl:input message="ns:setAudienceRequest" wsaw:Action="urn:setAudience"/>
+            <wsdl:output message="ns:setAudienceResponse" wsaw:Action="urn:setAudienceResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="startSession">
+            <wsdl:input message="ns:startSessionRequest" wsaw:Action="urn:startSession"/>
+            <wsdl:output message="ns:startSessionResponse" wsaw:Action="urn:startSessionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="endSession">
+            <wsdl:input message="ns:endSessionRequest" wsaw:Action="urn:endSession"/>
+            <wsdl:output message="ns:endSessionResponse" wsaw:Action="urn:endSessionResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="InteractSoapServiceSoap11Binding" type="ns:InteractSoapServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getOffersForMultipleInteractionPoints">
+            <soap:operation soapAction="urn:getOffersForMultipleInteractionPoints" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getProfile">
+            <soap:operation soapAction="urn:getProfile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getVersion">
+            <soap:operation soapAction="urn:getVersion" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="postEvent">
+            <soap:operation soapAction="urn:postEvent" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeBatch">
+            <soap:operation soapAction="urn:executeBatch" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOffers">
+            <soap:operation soapAction="urn:getOffers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setDebug">
+            <soap:operation soapAction="urn:setDebug" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="startSession">
+            <soap:operation soapAction="urn:startSession" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAudience">
+            <soap:operation soapAction="urn:setAudience" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="endSession">
+            <soap:operation soapAction="urn:endSession" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="InteractSoapServiceSoap12Binding" type="ns:InteractSoapServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getOffersForMultipleInteractionPoints">
+            <soap12:operation soapAction="urn:getOffersForMultipleInteractionPoints" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getProfile">
+            <soap12:operation soapAction="urn:getProfile" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getVersion">
+            <soap12:operation soapAction="urn:getVersion" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="postEvent">
+            <soap12:operation soapAction="urn:postEvent" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeBatch">
+            <soap12:operation soapAction="urn:executeBatch" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOffers">
+            <soap12:operation soapAction="urn:getOffers" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setDebug">
+            <soap12:operation soapAction="urn:setDebug" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="startSession">
+            <soap12:operation soapAction="urn:startSession" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAudience">
+            <soap12:operation soapAction="urn:setAudience" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="endSession">
+            <soap12:operation soapAction="urn:endSession" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="InteractSoapServiceHttpBinding" type="ns:InteractSoapServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getOffersForMultipleInteractionPoints">
+            <http:operation location="InteractSoapService/getOffersForMultipleInteractionPoints"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getProfile">
+            <http:operation location="InteractSoapService/getProfile"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getVersion">
+            <http:operation location="InteractSoapService/getVersion"/>
+            <wsdl:input>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="postEvent">
+            <http:operation location="InteractSoapService/postEvent"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeBatch">
+            <http:operation location="InteractSoapService/executeBatch"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOffers">
+            <http:operation location="InteractSoapService/getOffers"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setDebug">
+            <http:operation location="InteractSoapService/setDebug"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="startSession">
+            <http:operation location="InteractSoapService/startSession"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAudience">
+            <http:operation location="InteractSoapService/setAudience"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="endSession">
+            <http:operation location="InteractSoapService/endSession"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="InteractService">
+        <wsdl:port name="InteractSoapServiceHttpSoap11Endpoint" binding="ns:InteractSoapServiceSoap11Binding">
+            <soap:address location="http://mccmwprd.centilliard.io/interact/services/InteractService"/>
+        </wsdl:port>
+        <wsdl:port name="InteractSoapServiceHttpSoap12Endpoint" binding="ns:InteractSoapServiceSoap12Binding">
+            <soap:address location="http://mccmwprd.centilliard.io/interact/services/InteractService"/>
+        </wsdl:port>
+        <wsdl:port name="InteractSoapServiceHttpEndpoint" binding="ns:InteractSoapServiceHttpBinding">
+            <http:address location="http://mccmwprd.centilliard.io/interact/services/InteractService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

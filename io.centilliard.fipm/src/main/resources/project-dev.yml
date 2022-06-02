@@ -1,0 +1,36 @@
+swarm:
+  http:
+    port: 8081
+  logging:
+    pattern-formatters:
+      NORMAL:
+        pattern: "%p [%c] %s%e%n"
+      EXCEPTION:
+        pattern: "%p [%c.%m] %s%e%n"
+    periodic-rotating-file-handlers:
+      DEBUGLOG:
+        file:
+          path: logs/fipm.log
+        suffix: .yyyy-MM-dd
+        named-formatter: NORMAL
+        level: DEBUG
+      EXCEPTIONLOG:
+        file:
+          path: logs/exception.log
+        suffix: .yyyy-MM-dd
+        named-formatter: EXCEPTION
+        level: WARN
+    root-logger:
+      handlers:
+      - CONSOLE
+      - DEBUGLOG
+      - EXCEPTIONLOG
+    loggers:
+      cvmi.fipm:
+        level: DEBUG
+  microprofile:
+    config:      
+      config-sources:
+         env-config:
+           dir: /home/skok/temp/dev
+           ordinal: 200        
